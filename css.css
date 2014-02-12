@@ -1,0 +1,57 @@
+@CHARSET "UTF-8";
+
+body{
+	background: white;
+	font-family: sans-serif;
+	font-style: normal;
+	font-size:x-small;
+	font: monospace;
+}
+
+#sudoku{
+	margin-left: 5%;
+}
+#interface{
+	clear: both;
+}
+br{
+	clear:both;
+}
+
+div.vspace{
+	min-height: 10px;
+	clear: both;
+}
+
+div.pagbreak{
+		page-break-after: always;
+}
+
+#sudo_table{
+	page-break-inside: avoid;
+}
+table.par{
+	background-color: #AAAAAA;
+	color: black;
+	vertical-align: middle;
+	text-align: center;
+}
+
+table{
+	float:left;
+	page-break-after:auto;
+}
+
+table.impar{
+	background-color:#BBBBBB;
+	color:black;
+	vertical-align: middle;
+	text-align: center;
+}
+
+td{
+	min-width: 15px;
+	height: 15px;
+	border: dashed;
+	border-width: thin;
+}

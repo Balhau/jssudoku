@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Sudoku</title>
+		<script type="text/javascript" src="js.js"></script>
+	 	<link href="css.css" type="text/css" rel="stylesheet"> 
+		<script type="text/javascript" src="sudoku.js"></script> 
+</head>
+<body>
+	<div id="sudoku">
+	</div>
+	<div id="interface">
+		<label>Escolha o número de sudokus a gerar:</label>
+		<select id="num_sud" onchange="gera('num_sud')">
+		</select>
+		<input type="button" value="Imprimir" id="print" onclick="window.print()">
+		<label>Com Soluções?</label><input id="com_sol" type="checkbox" onclick="gera('num_sud')"></input>
+	</div>
+</body>
+<script>
+	var MAXIT=10000;
+	var PopulateComboBox=function(id){
+		var c=$(id);
+		var opt;
+		var html="";
+		for(var i=1;i<=MAXIT;i++){
+			html+="<option value=\""+i+"\">"+i+"</option>";
+		}
+		c.innerHTML=html;
+	}
+
+	var gera=function(id){
+		var nsud=$(id).get('$option')[$(id).selectedIndex].value;
+		var ch=$('com_sol');
+		var s=new Sudoku();
+		var html="";
+		for(var i=1;i<=nsud;i++){
+			while(!s.buildSudoku());
+			html+=s.getSudoku();
+			if(ch.checked){
+				html+=s.toHTML();
+				html+="<div class='vspace'></div>";
+			}
+			else{
+				if(i%2==0)
+					html+="<div class='vspace'></div>";
+			}
+			if(ch.checked){
+				if(i%3==0)
+					html+="<div class='pagbreak'></div>";
+			}
+			else{
+				if(i%6==0) html+="<div class='pagbreak'></div>";
+			}
+		}
+		d.innerHTML=html;
+	}
+	PopulateComboBox('num_sud');
+	var d=$('sudoku');
+</script>
+</html>
